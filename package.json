@@ -1,0 +1,21 @@
+{
+  "name": "zgMongoTest",
+  "version": "1.0.0",
+  "description": "CKs Express Mongo Test on Render",
+  "main": "connect.js",
+  "repository": "https://github.com/ZacharyGressaffa/415Assignment",
+  "author": "ZG",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node connect.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^5.1.0",
+    "nodemon": "^2.0.22"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}

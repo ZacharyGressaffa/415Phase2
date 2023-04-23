@@ -1,9 +1,9 @@
 {
-  "name": "zgMongoTest",
+  "name": "ZG415Project",
   "version": "1.0.0",
-  "description": "CKs Express Mongo Test on Render",
-  "main": "connect.js",
-  "repository": "https://github.com/ZacharyGressaffa/415Assignment",
+  "description": "415 Phase 2",
+  "main": "index.js",
+  "repository": "https://github.com/ZacharyGressaffa/415Phase2",
   "author": "ZG",
   "license": "MIT",
   "private": false,
@@ -13,6 +13,7 @@
   "dependencies": {
     "express": "^4.18.2",
     "mongodb": "^5.1.0",
+    "node-fetch": "^3.3.1",
     "nodemon": "^2.0.22"
   },
   "engines": {

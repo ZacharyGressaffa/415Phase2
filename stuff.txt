@@ -1,0 +1,89 @@
+app.post('/api/tickets', function(req, res) {
+    const client = new MongoClient(uri);
+
+    async function run() {
+        try {
+            await client.connect();
+
+            const database = client.db('415DB');
+            const tickets = database.collection('tickets');
+
+            const result = await tickets.insertOne(req.body);
+
+            //res.status(201).send('ticket created with ID: ' + result.insertedId);
+        } finally {
+            await client.close();
+        }
+    }
+
+    run().catch(console.dir);
+});
+
+
+/*app.post('/ticket', function(req, res) {
+    const newTicket = req.body;
+
+    // fields needed in the body
+    const ticketInfo = ['id', 'created_at', 'updated_at', 'type', 'subject', 'description', 'priority',
+        'status', 'recipient', 'submitter', 'assignee_id'];
+    // checking how many fields are missing
+    const missingTicketInfo = ticketInfo.filter(field => !(field in newTicket));
+
+
+    // adding the new ticket to the tickets collection in the MongoDB database
+    db.collection('tickets').insertOne(newTicket, function(err, result) {
+        if (err) {
+            console.error(err);
+            res.status(500).send("Server error!");
+            return;
+        }
+        console.log("Ticket added to the MongoDB database!");
+        res.redirect('/');
+    });
+});*/
+
+/*app.post('/api/tickets', function(req, res) {
+    const newticketData = req.body;
+
+    // adding the new ticket data to the tickets collection in the MongoDB database
+    db.collection('tickets').insertOne(newticketData, function(err, result) {
+        if (err) {
+            console.error(err);
+            res.status(500).send("Server error!");
+            return;
+        }
+        console.log("ticket added to the MongoDB database!");
+        res.status(201).send('ticket created with ID: ' + result.insertedId);
+    });
+});*/
+
+
+
+
+
+
+
+app.delete('/api/mongo/delete/:item', function(req, res) {
+    import('mongodb').then(({ MongoClient }) => {
+        const uri = 'mongodb+srv://zacharygressaffa:Password@415phase2.l4aijyg.mongodb.net/?retryWrites=true&w=majority;'
+
+        const searchKey = { ticketId: parseInt(req.params.item) };
+        console.log("Deleting: " + searchKey);
+
+        async function run() {
+            const client = new MongoClient(uri);
+            try {
+                await client.connect();
+                const database = client.db('415DB');
+                const parts = database.collection('415Collection');
+
+                const result = await parts.deleteOne(searchKey);
+                console.log(result.deletedCount + " item deleted");
+                res.send(result.deletedCount + " item deleted");
+            } finally {
+                await client.close();
+            }
+        }
+        run().catch(console.dir);
+    });
+});

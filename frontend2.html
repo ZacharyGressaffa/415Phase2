@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update ticket</title>
+</head>
+<body>
+<h1>Update ticket</h1>
+<form id="/rest/ticket/" method="PUT">
+    <label for="ticketId">ID:</label>
+    <input type="text" id="ticketId" name="ticketId"><br>
+
+    <label for="type">type:</label>
+    <input type="text" id="type" name="type"><br>
+
+    <label for="subject">subject:</label>
+    <input type="text" id="subject" name="subject"><br>
+
+    <label for="description">description:</label>
+    <input type="text" id="description" name="description"><br>
+
+    <label for="priority">priority:</label>
+    <input type="text" id="priority" name="priority"><br>
+
+    <label for="status">status:</label>
+    <input type="text" id="status" name="status"><br>
+
+    <label for="recipient">recipient:</label>
+    <input type="text" id="recipient" name="recipient"><br>
+
+    <label for="submitter">submitter:</label>
+    <input type="text" id="submitter" name="submitter"><br>
+
+    <label for="assignee_id">assignee_id:</label>
+    <input type="text" id="assignee_id" name="assignee_id"><br>
+
+    <label for="follower_ids">follower_ids:</label>
+    <input type="text" id="follower_ids" name="follower_ids"><br>
+    <button type="submit">Update ticket</button>
+</form>
+<script>
+    const form = document.getElementById('/rest/ticket/');
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const ticketId = form.elements['ticketId'].value;
+        const type = form.elements['type'].value;
+        const subject = form.elements['subject'].value;
+        const description = form.elements['description'].value;
+        const priority = form.elements['priority'].value;
+        const status = form.elements['status'].value;
+        const recipient = form.elements['recipient'].value;
+        const submitter = form.elements['submitter'].value;
+        const assignee_id = form.elements['assignee_id'].value;
+        const follower_ids = form.elements['follower_ids'].value;
+        const response = await fetch(`/api/update/${ticketId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        });
+        const result = await response.json();
+        console.log(result);
+    });
+</script>
+</body>
+</html>
